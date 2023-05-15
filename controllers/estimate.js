@@ -1,10 +1,11 @@
 const axios = require('axios');
 const getCurrentWeather = require('./current');
 
-const getEstimate = async () => {
-    const weatherData = await axios.get('https://weatherapi-com.p.rapidapi.com/forecast.json', { 
+const getEstimate = async (city) => {
+    try {
+        const weatherData = await axios.get('https://weatherapi-com.p.rapidapi.com/forecast.json', { 
         params: {
-            q: 'London',
+            q: city,
             days: 3
         },
         headers: {
@@ -21,6 +22,10 @@ const getEstimate = async () => {
             description: day.day.condition.text
         }
     })
+    } catch(err) {
+        return err.response.data;
+    };
+    
     
 };
 
