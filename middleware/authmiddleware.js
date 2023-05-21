@@ -8,8 +8,6 @@ function auth (req, res, next) {
     } else {
         res.status(401).send('Unauthorized');
     };
-
-
 };
 
 module.exports = auth;
